@@ -1,0 +1,71 @@
+<?php
+include 'koneksi.php';
+	$id = $_GET['id'];
+	$data = mysqli_query($koneksi,"SELECT * from agenda where id='$id'");
+	while($d = mysqli_fetch_array($data)){
+		?>
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+
+    	<div class="modal-header" style="text-align:center;background:#4682b5;color:#fff;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">Edit Agenda</h4>
+        </div>
+
+        <div class="modal-body">
+        	<form action="p_edit_agenda.php" name="modal_popup" enctype="multipart/form-data" method="POST">
+
+            <div class="form-group" style="padding-bottom: 10px;">
+            <label for="tanggal">Tanggal : </label>
+              <input type="hidden" name="id"  class="form-control" value="<?php echo $d['id']; ?>"/>
+            <input type="date" name="tanggal" value="<?php echo $d['tanggal'];?>">
+               </div>
+               <div class="form-group" style="padding-bottom: 10px;">
+               <label for="tanggal">Jam : </label>
+               <input type="time" name="jam" value="<?php echo $d['jam'];?>" required/>
+                  </div>
+                  <div class="form-group">
+                    <label for="nama">Acara</label>
+                    <input type="text" name="acara" value="<?php echo $d['acara'];?>"  class="form-control"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="nama">Tempat</label>
+                    <input type="text" name="tempat" value="<?php echo $d['tempat']; ?>"  class="form-control"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="nama">Pelaksana</label>
+                    <input type="text" name="pelaksana" value="<?php echo $d['pelaksana']; ?>"  class="form-control"/>
+                  </div>
+	            <div class="modal-footer">
+	                <button class="btn btn-success" type="submit">
+	                    Confirm
+	                </button>
+
+	                <button type="reset" class="btn btn-danger"  data-dismiss="modal" aria-hidden="true">
+	               		Cancel
+	                </button>
+	            </div>
+
+            	</form>
+<?php } ?>
+            </div>
+
+        </div>
+        <!-- panggil jquery -->
+
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $("#tgl").datepicker({dateFormat : 'yy/mm/dd'});
+          });
+        </script>
+         <!-- panggil ckeditor.js -->
+         <script type="text/javascript" src="../assets/ckeditor/ckeditor.js"></script>
+         <!-- panggil adapter jquery ckeditor -->
+         <script type="text/javascript" src="../assets/ckeditor/adapters/jquery.js"></script>
+         <!-- setup selector -->
+         <script type="text/javascript">
+             $('textarea.texteditor').ckeditor();
+         </script>
+    </div>
