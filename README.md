@@ -1,2 +1,2 @@
 # SearchEngine
- Temu Kembali Informasi Menggunakan TF - IDF dan Vektor Sapce Model
+ Temu Kembali Informasi Menggunakan TF - IDF dan Vektor Space Model
